@@ -26,6 +26,7 @@ func GetAlbumById(c *gin.Context) {
 	c.JSON(200, &album)
 }
 
+//todo haewon - need to delete related songs
 func DeleteAlbum(c *gin.Context) {
 	var album models.Album
 	config.DB.Where("id = ?", c.Param("id")).Delete(&album)
