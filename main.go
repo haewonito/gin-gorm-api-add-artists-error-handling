@@ -8,9 +8,10 @@ import (
 
 func main() {
 	router := gin.New()
-	config.Connect()
-
-	routes.AlbumRoute(router)
 	
+	config.Connect()
+	routes.SongRoute(router)
+	routes.AlbumRoute(router)
+
 	router.Run(":8080")
 }
