@@ -12,6 +12,7 @@ func main() {
 	config.Connect()
 	routes.SongRoute(router)
 	routes.AlbumRoute(router)
+	routes.AlbumSongRoute(router)
 
 	router.Run(":8080")
 }

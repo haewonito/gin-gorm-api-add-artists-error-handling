@@ -29,7 +29,18 @@ func GetAlbumById(c *gin.Context) {
 //todo haewon - need to delete related songs
 func DeleteAlbum(c *gin.Context) {
 	var album models.Album
+
+	if err := config.DB.Preload("Songs").First(&album, c.Param("id")).Error; err != nil {
+		panic(err)
+	}
+
+	var songs []models.Song
+	for _, song := range album.Songs {
+		songs = append(songs, song)
+	}
 	config.DB.Where("id = ?", c.Param("id")).Delete(&album)
+	config.DB.Delete(&songs)
+
 	c.JSON(200, &album)
 }
 
